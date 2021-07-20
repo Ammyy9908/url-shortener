@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= title %> </title>
+</head>
+<body>
+    <nav>
+        <div class="contaier__nav">
+            <div class="brand__name">
+                <strong>URLY</strong>
+            </div>
+            <div class="links">
+                <a href="#/" class="btn-about" title="Feature not supported">About Devloper</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="container__left">
+            <h1>Map Your Long Urls with URLY</h1>
+            <p>A URL shortener/mapper built with NodeJS</p>
+            <div class="input__div">
+                <form><input type="text" name="url" placeholder="Shorten Your URL" autocomplete="off"><input type="submit" value="Shorten URL"></form>
+                
+            </div>
+            <!-- <a href="#/" class="btn btn-primary">Explore</a> -->
+        </div>
+    </div>
+    <div class="output">
+
+        <a href="" class="shorten__url">Demo</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+            const url =form.url.value;
+            if(url){
+
+               try {
+                const r = await axios.post('http://localhost:3000/',{url:url});
+            if (r.status === 200) {
+                document.querySelector('.output').style.display = 'flex';
+                
+                   document.querySelector('.output').innerHTML = `<p href="#" class="shorten__url">${r.data.shorten_url}</p>`;
+                   
+                   form.reset();
+            }
+        } catch (e) {
+            if (e.response && e.response.data) {
+                alert(e.response.data.error);
+                const error = e.response.data.error;
+                showError(error);
+                
+            }
+        }
+            }
+        })
+
+        // add event on output to copy the url
+        document.querySelector('.output').addEventListener('click', function (e){
+            navigator.clipboard.writeText(e.target.textContent).then(()=>{
+                e.target.innerHTML = '<p>URI COPIED!</p>';
+                setTimeout(function () {
+                    document.querySelector('.output').style.display = 'none';
+                },3000);
+            })
+        })
+
+        const showError = (err)=>{
+            document.querySelector('.output').innerHTML = `<p>${err}</p>`;
+        }
+
+
+    </script>
+</body>
+</html>
