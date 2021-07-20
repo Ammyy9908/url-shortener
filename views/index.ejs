@@ -41,7 +41,7 @@
             if(url){
 
                try {
-                const r = await axios.post('http://localhost:3000/',{url:url});
+                const r = await axios.post('https://easyurly.herokuapp.com/',{url:url});
             if (r.status === 200) {
                 document.querySelector('.output').style.display = 'flex';
                 

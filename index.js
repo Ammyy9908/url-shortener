@@ -57,9 +57,9 @@ if(!isValid) {
            shorten_id:shortid.generate()
        })
        const result = await newURL.save();
-       return res.send({shorten_url:`https://urlyit.herokuapp.com/${result.shorten_id}`});
+       return res.send({shorten_url:`https://easyurly.herokuapp.com/${result.shorten_id}`});
    }
-   res.status(200).send({shorten_url:`https://urlyit.herokuapp.com/${isExists.shorten_id}`})
+   res.status(200).send({shorten_url:`https://easyurly.herokuapp.com/${isExists.shorten_id}`})
 })
 
 
