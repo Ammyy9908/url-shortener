@@ -9,6 +9,8 @@
  `$ npm i`
  
  `$ npm run dev`
+ 
+ ### Usage
 
 
 open index.js
