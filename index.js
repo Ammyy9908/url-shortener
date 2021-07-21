@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-    mongoose.connect('mongodb+srv://admin-summit:2146255sb8@cluster0.fyuq8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority/URLSHORTNER',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
+    mongoose.connect('<Mongodb cloud url>/URLSHORTNER',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
         console.log("Database connected!");
     });
 
