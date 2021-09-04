@@ -35,8 +35,8 @@ app.get('/',async (req,res) => {
     res.render('index',{title:'URLY-url shortner'});
 })
 
-app.get('/:uid',async (req,res) => {
-    const url = await URL.findOne({shorten_id:req.params.uid});
+app.get('/:lid',async (req,res) => {
+    const url = await URL.findOne({shorten_id:req.params.lid});
     if(!url){
         return res.status(500).json({error:"Invalid Shorten URL!"});
     }
