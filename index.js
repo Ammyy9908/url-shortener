@@ -2,9 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const shortid = require('shortid');
 const cors = require('cors');
-const URL = require('./models/URL');
 const bp = require('body-parser');
 var validUrl = require('valid-url');
+const URL = require('./models/URL');
+
 
 
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-    mongoose.connect('<Mongodb cloud url>/URLSHORTNER',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
+    mongoose.connect('mongodb+srv://Sumit:2146255sb8@cluster0.0wij2.mongodb.net/URLSHORTNER',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
         console.log("Database connected!");
     });
 
@@ -57,7 +58,7 @@ if(!isValid) {
            shorten_id:shortid.generate()
        })
        const result = await newURL.save();
-       return res.send({shorten_url:`https://easyurly.herokuapp.com/${result.shorten_id}`});
+       return res.send({shorten_url:`http://localhost:3000/${result.shorten_id}`});
    }
    
 })
@@ -70,6 +71,6 @@ app.listen(port,()=>{
    
         console.log(`Server listen at ${port} & DB is also connected!`);
     
-})
+});
 
 
