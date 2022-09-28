@@ -61,6 +61,9 @@ if(!isValid) {
        const result = await newURL.save();
        return res.send({shorten_url:`http://localhost:3000/${result.shorten_id}`});
    }
+   else{
+         return res.send({shorten_url:`http://localhost:3000/${isExists.shorten_id}`});
+   }
    
 })
 
