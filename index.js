@@ -5,6 +5,7 @@ const cors = require('cors');
 const bp = require('body-parser');
 var validUrl = require('valid-url');
 const URL = require('./models/URL');
+const QRCode = require('qrcode')
 
 
 
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-    mongoose.connect('mongodb+srv://Sumit:2146255sb8@cluster0.0wij2.mongodb.net/URLSHORTNER',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
+    mongoose.connect('mongodb+srv://Sumit:2146255sb8@cluster0.0wij2.mongodb.net/phirlo_qr_generator',{useNewUrlParser:true,useUnifiedTopology:true},()=>{
         console.log("Database connected!");
     });
 
@@ -61,6 +62,19 @@ if(!isValid) {
        return res.send({shorten_url:`http://localhost:3000/${result.shorten_id}`});
    }
    
+})
+
+app.post("/qr/generate",async (req,res)=>{
+    const {url,sno} = req.body;
+    const isValid = validUrl.isUri(url)
+    console.log(isValid);
+    if(!isValid) {
+        return res.status(400).json({error: 'Invalid URL'});
+    }
+    
+        const qr = await QRCode.toFile(`./public/qr/${sno}.png`,url)
+        return res.send({success:true});
+    
 })
 
 

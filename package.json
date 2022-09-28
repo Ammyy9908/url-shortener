@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
-   
   },
   "keywords": [
     "url-shotner",
@@ -21,6 +20,7 @@
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
     "mongoose": "^5.10.14",
+    "qrcode": "^1.5.1",
     "shortid": "^2.2.16",
     "url_validator": "^1.0.4",
     "valid-url": "^1.0.9"
