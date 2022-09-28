@@ -59,10 +59,10 @@ if(!isValid) {
            shorten_id:shortid.generate()
        })
        const result = await newURL.save();
-       return res.send({shorten_url:`http://localhost:3000/${result.shorten_id}`});
+       return res.send({shorten_url:`https://phirlo-qrcode.herokuapp.com/${result.shorten_id}`});
    }
    else{
-         return res.send({shorten_url:`http://localhost:3000/${isExists.shorten_id}`});
+         return res.send({shorten_url:`https://phirlo-qrcode.herokuapp.com/${isExists.shorten_id}`});
    }
    
 })
